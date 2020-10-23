@@ -6,15 +6,17 @@ HIPPOKAMPE_BROWSERS="${HIPPOKAMPE_GENERAL}/browsers"
 DESTINATION="/tmp"
 
 # Binaries for linux
-VERSION_API="v0.7.2-alpha"
-VERSION_CLI="v0.7.0-alpha"
+VERSION_API="v0.8.0-alpha"
+VERSION_CLI="v0.7.5-alpha"
+VERSION_DAEMON="v0.7.5-alpha"
 
 HIPPOKAMPE_API="https://github.com/hippokampe/api/releases/download/${VERSION_API}/api"
 HIPPOKAMPE_CLI="https://github.com/hippokampe/cli/releases/download/${VERSION_CLI}/hbtn"
+HIPPOKAMPE_DAEMON="https://github.com/hippokampe/cli/releases/download/${VERSION_CLI}/hippokamped"
 
 
 if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root"
+  echo "Please run as root. sudo ./setup.py"
   exit
 fi
 
@@ -56,6 +58,11 @@ check_dependency() {
     if [ "${COMMAND}" == "jq" ]; then
       download_package "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" "jq"
       install_package "jq"
+    elif [ "${COMMAND}" == "npm" ]; then
+      curl -s https://install-node.now.sh | bash -s --
+      npm install -g npm
+      npm update
+      npm install
     else
       exit
     fi
@@ -67,7 +74,6 @@ check_dependency "curl"
 check_dependency "jq"
 
 # Basic structure creation
-echo
 if [ -d  "${HIPPOKAMPE_GENERAL}" ]
 then
     echo "Directory ${HIPPOKAMPE_GENERAL} exists."
@@ -88,6 +94,7 @@ then
 else
     mkdir -p "${HIPPOKAMPE_BROWSERS}"
 fi
+
 
 # Downloading browsers
 echo
@@ -158,8 +165,9 @@ echo "Downloading internal dependencies"
 
 download_package "${HIPPOKAMPE_API}" "api"
 download_package "${HIPPOKAMPE_CLI}" "hbtn"
+download_package "${HIPPOKAMPE_DAEMON}" "hippokamped"
 
-install_package "api hbtn"
+install_package "api hbtn hippokamped"
 
 # Removing extra files
 echo
