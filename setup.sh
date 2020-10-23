@@ -8,11 +8,11 @@ DESTINATION="/tmp"
 # Binaries for linux
 VERSION_API="v0.8.0-alpha"
 VERSION_CLI="v0.7.5-alpha"
-VERSION_DAEMON="v0.7.5-alpha"
+VERSION_DAEMON="v0.8.0-alpha"
 
 HIPPOKAMPE_API="https://github.com/hippokampe/api/releases/download/${VERSION_API}/api"
 HIPPOKAMPE_CLI="https://github.com/hippokampe/cli/releases/download/${VERSION_CLI}/hbtn"
-HIPPOKAMPE_DAEMON="https://github.com/hippokampe/cli/releases/download/${VERSION_CLI}/hippokamped"
+HIPPOKAMPE_DAEMON="https://github.com/hippokampe/daemon/releases/download/${VERSION_DAEMON}/hbtnd"
 
 
 if [ "$EUID" -ne 0 ]; then
@@ -165,9 +165,9 @@ echo "Downloading internal dependencies"
 
 download_package "${HIPPOKAMPE_API}" "api"
 download_package "${HIPPOKAMPE_CLI}" "hbtn"
-download_package "${HIPPOKAMPE_DAEMON}" "hippokamped"
+download_package "${HIPPOKAMPE_DAEMON}" "hbtnd"
 
-install_package "api hbtn hippokamped"
+install_package "api hbtn hbtnd"
 
 # Removing extra files
 echo
