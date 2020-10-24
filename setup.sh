@@ -8,7 +8,7 @@ DESTINATION="/tmp"
 # Binaries for linux
 VERSION_API="v0.8.0-alpha"
 VERSION_CLI="v0.7.5-alpha"
-VERSION_DAEMON="v0.8.0-alpha"
+VERSION_DAEMON="v1.0.0-alpha"
 
 HIPPOKAMPE_API="https://github.com/hippokampe/api/releases/download/${VERSION_API}/api"
 HIPPOKAMPE_CLI="https://github.com/hippokampe/cli/releases/download/${VERSION_CLI}/hbtn"
