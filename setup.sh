@@ -6,12 +6,8 @@ HIPPOKAMPE_BROWSERS="${HIPPOKAMPE_GENERAL}/browsers"
 DESTINATION="/tmp"
 
 # Binaries for linux
-VERSION_API="v0.8.0-alpha"
-VERSION_CLI="v0.7.5-alpha"
 VERSION_DAEMON="v1.0.0-alpha"
 
-HIPPOKAMPE_API="https://github.com/hippokampe/api/releases/download/${VERSION_API}/api"
-HIPPOKAMPE_CLI="https://github.com/hippokampe/cli/releases/download/${VERSION_CLI}/hbtn"
 HIPPOKAMPE_DAEMON="https://github.com/hippokampe/daemon/releases/download/${VERSION_DAEMON}/hbtnd"
 
 
@@ -163,17 +159,14 @@ create_browser_file "${HIPPOKAMPE_BROWSERS}" "${HIPPOKAMPE_GENERAL}/general.json
 echo
 echo "Downloading internal dependencies"
 
-download_package "${HIPPOKAMPE_API}" "api"
-download_package "${HIPPOKAMPE_CLI}" "hbtn"
 download_package "${HIPPOKAMPE_DAEMON}" "hbtnd"
 
-install_package "api hbtn hbtnd"
+install_package "hbtn hbtnd"
 
 # Removing extra files
 echo
 echo "Removing extra files"
-rm -rf "${DESTINATION}/api"
-rm -rf "${DESTINATION}/hbtn"
+rm -rf "${DESTINATION}/hbtnd"
 
 echo
 echo "Successfully installed"
